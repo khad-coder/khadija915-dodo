@@ -4,7 +4,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker push khadija915/dodo:tagname')
+        DOCKERHUB_CREDENTIALS = credentials('docker push khadija915/dodo:latest')
     }
     stages {
         stage('Build') {
