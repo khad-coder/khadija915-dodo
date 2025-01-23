@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'docker push khadija915/dodo:latest
+                sh 'docker push khadija915/dodo:latest'
             }
         }
     }
