@@ -6,20 +6,17 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
+
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t khadija915/dodo:latest .'
-            }
-        }
-        stage('Login') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
-        stage('Push') {
-            steps {
-                sh 'docker push khadija915/dodo:latest'
+                script {
+                    node {
+                        sh 'docker build -t khadija915/dodo:latest .'
+                        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                        sh 'docker push khadija915/dodo:latest'
+                    }
+                }
             }
         }
     }
